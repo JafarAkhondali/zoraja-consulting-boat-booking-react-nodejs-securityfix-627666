@@ -1,0 +1,26 @@
+
+/*
+    style.css
+
+    © 2020 Zoraja Consulting. All rights reserved but even though use it.
+*/
+
+html, body, #app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    color: #4d5256;
+    line-height: 1.5;
+    background-color: #ededed;
+}
+
+body {
+    position: relative;
+    margin: 0 auto;
+}
