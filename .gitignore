@@ -3,8 +3,7 @@ node_modules/
 /node_modules/
 
 # React Build
-/build/
-build/
+public/scripts/client.bundle.js
 
 # React Test Snapshots
 /__snapshots__/

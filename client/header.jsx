@@ -2,10 +2,10 @@
 //
 //  header.jsx
 //
-//  © 2020 Zoraja Consulting. All rights reserved but even though use it.
+//  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -70,36 +70,28 @@ const Menu = styled.nav`
   }
 `
 
-export default class Header extends React.Component {
-  state = {
-    open: false
-  }
+export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  render() {
-    return (
-      <BrachHeader>
-  	    <img src='images/logo-BRACh1.png' />
-  	    <MenuContainer open={this.state.open}>
-  	      <i className='material-icons' onClick={this.toggleMenu}>menu</i>
-  	      {this.state.open ? (
-            <Menu>
-    	        <ul>
-    	          <li><Link to='/'>Home</Link></li>
-    	          <li><Link to='/about'>About BRACh</Link></li>
-    	          <li><Link to='/find'>Find a boat</Link></li>
-    	          <li><Link to='/media'>Media</Link></li>
-    	          <li><Link to='/contact'>Contact</Link></li>
-    	        </ul>
-    	      </Menu>
-          ) : null}
-  	    </MenuContainer>
-  	  </BrachHeader>
-    )
-  }
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
-  toggleMenu = () => {
-    this.setState({
-      open: !this.state.open
-    })
-  }
+  return (
+    <BrachHeader>
+	    <img src='images/logo-BRACh1.png' />
+	    <MenuContainer open={isMenuOpen}>
+	      <i className='material-icons' onClick={toggleMenu}>menu</i>
+	      {isMenuOpen ? (
+          <Menu>
+  	        <ul>
+  	          <li><Link to='/'>Home</Link></li>
+  	          <li><Link to='/about'>About BRACh</Link></li>
+  	          <li><Link to='/find'>Find a boat</Link></li>
+  	          <li><Link to='/media'>Media</Link></li>
+  	          <li><Link to='/contact'>Contact</Link></li>
+  	        </ul>
+  	      </Menu>
+        ) : null}
+	    </MenuContainer>
+	  </BrachHeader>
+  )
 }

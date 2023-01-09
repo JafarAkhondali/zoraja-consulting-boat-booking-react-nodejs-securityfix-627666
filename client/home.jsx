@@ -2,10 +2,10 @@
 //
 //  home.jsx
 //
-//  © 2020 Zoraja Consulting. All rights reserved but even though use it.
+//  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
 
-import React from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 import { mainContentWidth } from './css-variables'
@@ -71,70 +71,70 @@ const Divider = styled.hr`
   border-width: 2px;
 `
 
-export default class Home extends React.Component {
-  state = {
-    activeIndex: 0
+export default function Home() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const _imageInterval = useRef(null)
+
+  const selectImage = useCallback(
+    index => {
+      if (activeIndex === index) {
+        return
+      }
+
+      setActiveIndex(index)
+    },
+    [activeIndex],
+  )
+
+  const startSlideshow = useCallback(
+    () => {
+      _imageInterval.current = setInterval(() => selectImage((activeIndex + 1) % 4), 5000)
+    },
+    [activeIndex, selectImage],
+  )
+
+  const cleanup = useCallback(
+    () => {
+      if (_imageInterval.current) {
+        clearInterval(_imageInterval.current)
+        _imageInterval.current = null
+      }
+    },
+    [],
+  )
+
+  useEffect(() => {
+    startSlideshow()
+
+    return () => cleanup()
+  }, [startSlideshow, cleanup])
+
+  const restartSlideshow = () => {
+    cleanup()
+    startSlideshow()
   }
 
-  _imageInterval = null
-
-  componentDidMount() {
-    this.startSlideshow()
+  const handleClick = index => {
+    selectImage(index)
+    restartSlideshow()
   }
 
-  componentWillUnmount() {
-    this.cleanup()
-  }
-
-  render() {
-    const { activeIndex } = this.state
-
-    return (
-      <Container>
-        <Gallery activeIndex={activeIndex}>
-          <img src='images/slider-1.jpg' />
-          <img src='images/slider-2.jpg' />
-          <img src='images/slider-3.jpg' />
-          <img src='images/slider-4.jpg' />
-          <ImageButtonsContainer>
-            <ImageButton active={activeIndex === 0} onClick={() => this.handleClick(0)} />
-            <ImageButton active={activeIndex === 1} onClick={() => this.handleClick(1)} />
-            <ImageButton active={activeIndex === 2} onClick={() => this.handleClick(2)} />
-            <ImageButton active={activeIndex === 3} onClick={() => this.handleClick(3)} />
-          </ImageButtonsContainer>
-        </Gallery>
-        <TagLine>Looking for The Sun and Fun</TagLine>
-        <Divider />
-      </Container>
-    )
-  }
-
-  handleClick = index => {
-    this.selectImage(index)
-    this.restartSlideshow()
-  }
-
-  selectImage = index => {
-    if (this.state.activeIndex === index) {
-      return
-    }
-
-    this.setState({ activeIndex: index })
-  }
-
-  startSlideshow = () => {
-    this._imageInterval = setInterval(() => this.selectImage((this.state.activeIndex + 1) % 4), 5000)
-  }
-
-  cleanup = () => {
-    if (this._imageInterval) {
-      clearInterval(this._imageInterval)
-      this._imageInterval = null
-    }
-  }
-
-  restartSlideshow = () => {
-    this.cleanup()
-    this.startSlideshow()
-  }
+  return (
+    <Container>
+      <Gallery activeIndex={activeIndex}>
+        <img src='images/slider-1.jpg' />
+        <img src='images/slider-2.jpg' />
+        <img src='images/slider-3.jpg' />
+        <img src='images/slider-4.jpg' />
+        <ImageButtonsContainer>
+          <ImageButton active={activeIndex === 0} onClick={() => handleClick(0)} />
+          <ImageButton active={activeIndex === 1} onClick={() => handleClick(1)} />
+          <ImageButton active={activeIndex === 2} onClick={() => handleClick(2)} />
+          <ImageButton active={activeIndex === 3} onClick={() => handleClick(3)} />
+        </ImageButtonsContainer>
+      </Gallery>
+      <TagLine>Looking for The Sun and Fun</TagLine>
+      <Divider />
+    </Container>
+  )
 }

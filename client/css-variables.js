@@ -2,7 +2,7 @@
 //
 //  css-variables.js
 //
-//  © 2020 Zoraja Consulting. All rights reserved but even though use it.
+//  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
 
 export const mainContentWidth = 1441

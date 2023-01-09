@@ -2,7 +2,7 @@
 //
 //  media.jsx
 //
-//  © 2020 Zoraja Consulting. All rights reserved but even though use it.
+//  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
 
 import React from 'react'
@@ -29,15 +29,13 @@ const VideoContainer = styled.div`
   width: 100%;
 `
 
-export default class Media extends React.Component {
-  render() {
-    return (
-      <Container>
-        <Title>Media</Title>
-        <VideoContainer>
-          <video src="videos/promo-video.mp4" controls width="800"></video>
-        </VideoContainer>
-      </Container>
-    )
-  }
+export default function Media() {
+  return (
+    <Container>
+      <Title>Media</Title>
+      <VideoContainer>
+        <video src="videos/promo-video.mp4" controls width="800"></video>
+      </VideoContainer>
+    </Container>
+  )
 }

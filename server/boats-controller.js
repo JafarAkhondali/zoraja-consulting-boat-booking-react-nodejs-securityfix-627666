@@ -2,7 +2,7 @@
 //
 //  boats-controller.js
 //
-//  © 2020 Zoraja Consulting. All rights reserved but even though use it.
+//  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
 
 const { parse: parseUrl } = require('url');
@@ -55,7 +55,7 @@ function getBoatOffers(request, response) {
 			break;
 		case 'popular':
 			offer = [boats[3], boats[8], boats[12], boats[16]];
-			break;			
+			break;
 	}
 
 	response.setHeader('Content-Type', 'application/json');

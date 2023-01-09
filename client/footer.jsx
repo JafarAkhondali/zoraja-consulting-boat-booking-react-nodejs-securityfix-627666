@@ -2,7 +2,7 @@
 //
 //  footer.jsx
 //
-//  © 2020 Zoraja Consulting. All rights reserved but even though use it.
+//  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
 
 import React from 'react'
@@ -100,33 +100,31 @@ const NavisYachtLink = styled.a`
   }
 `
 
-export default class Footer extends React.Component {
-  render() {
-    return (
-      <BrachFooter>
-        <Logo src='images/logo-BRACh2.png' />
-        <LinksContainer>Find us on:
-          <img src='images/facebook.png' />
-          <img src='images/instagram.png' />
-          <img src='images/twitter.png' />
-          <img src='images/youtube.png' />
-        </LinksContainer>
-        <ShareContainer>
-          <span>Share:</span><i className='material-icons'>share</i>
-        </ShareContainer>
-        <GoUpContainer onClick={() => window.scrollTo(0, 0)}>
-          <GoUpArrow />
-        </GoUpContainer>
-        <ImpressumContainer>
-          <span>Boat Rent And Charter, Split 2020</span>
-          <Impressum>
-            Powered by: ZORAJA Consulting d.o.o. / Design: Luka Duplančić /
-            <NavisYachtLink href='https://navisyachtcharter.com/' target='_blank'>
-              Photos courtesy of Navis Yacht Charter Company
-            </NavisYachtLink>
-          </Impressum>
-        </ImpressumContainer>
-      </BrachFooter>
-    )
-  }
+export default function Footer() {
+  return (
+    <BrachFooter>
+      <Logo src='images/logo-BRACh2.png' />
+      <LinksContainer>Find us on:
+        <img src='images/facebook.png' />
+        <img src='images/instagram.png' />
+        <img src='images/twitter.png' />
+        <img src='images/youtube.png' />
+      </LinksContainer>
+      <ShareContainer>
+        <span>Share:</span><i className='material-icons'>share</i>
+      </ShareContainer>
+      <GoUpContainer onClick={() => window.scrollTo(0, 0)}>
+        <GoUpArrow />
+      </GoUpContainer>
+      <ImpressumContainer>
+        <span>Boat Rent And Charter, Split 2020</span>
+        <Impressum>
+          Powered by: ZORAJA Consulting d.o.o. / Design: Luka Duplančić /
+          <NavisYachtLink href='https://navisyachtcharter.com/' target='_blank'>
+            Photos courtesy of Navis Yacht Charter Company
+          </NavisYachtLink>
+        </Impressum>
+      </ImpressumContainer>
+    </BrachFooter>
+  )
 }

@@ -2,14 +2,14 @@
 //
 //  find.jsx
 //
-//  © 2020 Zoraja Consulting. All rights reserved but even though use it.
+//  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import React, { useEffect, useMemo, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
+import { usePrevious } from './hooks'
 import FindForm, { FormButton } from './find-form.jsx'
 import {
   BOATS_SEARCH_BEGIN,
@@ -121,72 +121,56 @@ const BoatItem = props => {
   )
 }
 
-class FindResults extends React.Component {
-  static propTypes = {
-    boats: PropTypes.object.isRequired
+function FindResults(props) {
+  const { boats: { list: boatList, isRequesting, error } } = props
+  const [showSearch, setShowSearch] = useState(false)
+  const prevIsRequesting = usePrevious(isRequesting)
+
+  const boatItems = useMemo(
+    () => boatList.map(boat => <BoatItem info={boat} key={boat.name} />),
+    [boatList],
+  )
+
+  useEffect(() => {
+    if (isRequesting && !prevIsRequesting) {
+      setShowSearch(true)
+    }
+  }, [isRequesting])
+
+  if (isRequesting) {
+    return <Title>Loading...</Title>
   }
 
-  state = {
-    showSearch: false
+  if (!showSearch) {
+    return null
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.boats.isRequesting && !this.props.boats.isRequesting) {
-      this.setState({ showSearch: true })
-    }
+  if (error) {
+    return <Title>An error occurred.</Title>
   }
 
-  render() {
-    const { list: boatList, isRequesting, error } = this.props.boats
-    const { showSearch } = this.state
-
-    if (isRequesting) {
-      return <Title>Loading...</Title>
-    }
-
-    if (!showSearch) {
-      return null
-    }
-
-    if (error) {
-      return <Title>An error occurred.</Title>
-    }
-
-    if (boatList.length < 1) {
-      return <Title>No results.</Title>
-    }
-
-    const boatItems = boatList.map(boat => <BoatItem info={boat} key={boat.name} />)
-
-    return (
-      <>
-        <Title>RESULTS</Title>
-        <Divider />
-        <FindContent>
-          <BoatList>
-            {boatItems}
-          </BoatList>
-        </FindContent>
-      </>
-    )
+  if (boatItems.length < 1) {
+    return <Title>No results.</Title>
   }
+
+  return (
+    <>
+      <Title>RESULTS</Title>
+      <Divider />
+      <FindContent>
+        <BoatList>
+          {boatItems}
+        </BoatList>
+      </FindContent>
+    </>
+  )
 }
 
-class Find extends React.Component {
-  render() {
-    return (
-      <Container>
-        <Title>FIND A BOAT</Title>
-        <Divider />
-        <FindContent>
-          <FindForm onGetOffer={this.getOffer} onSearch={this.search} />
-        </FindContent>
-        <FindResults boats={this.props.boats} />
-      </Container>
-    )
-  }
+export default function Find() {
+  const dispatch = useDispatch()
+  const boats = useSelector(state => state.boats)
 
-  getOffer = type => {
+  const getOffer = type => {
     const xhr = new XMLHttpRequest()
 
     xhr.onreadystatechange = () => {
@@ -203,22 +187,23 @@ class Find extends React.Component {
     xhr.send()
   }
 
-  search = () => {
-    this.props.dispatch({ type: BOATS_SEARCH_BEGIN })
+  const search = () => {
+    dispatch({ type: BOATS_SEARCH_BEGIN })
 
     fetch('/api/v1/boats')
       .then(response => response.json())
-      .then(boats => this.props.dispatch({ type: BOATS_SEARCH, payload: boats }))
-      .catch(error => this.props.dispatch({ type: BOATS_SEARCH_ERROR, payload: error }))
+      .then(boats => dispatch({ type: BOATS_SEARCH, payload: boats }))
+      .catch(error => dispatch({ type: BOATS_SEARCH_ERROR, payload: error }))
   }
-}
 
-const mapStateToProps = state => {
-  return {
-    boats: state.boats
-  }
+  return (
+    <Container>
+      <Title>FIND A BOAT</Title>
+      <Divider />
+      <FindContent>
+        <FindForm onGetOffer={getOffer} onSearch={search} />
+      </FindContent>
+      <FindResults boats={boats} />
+    </Container>
+  )
 }
-
-export default connect(
-  mapStateToProps,
-)(Find)

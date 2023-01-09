@@ -2,7 +2,7 @@
 //
 //  contact.jsx
 //
-//  © 2020 Zoraja Consulting. All rights reserved but even though use it.
+//  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
 
 import React from 'react'
@@ -157,71 +157,69 @@ const ContactEmail = styled.span`
   }
 `
 
-export default class Contact extends React.Component {
-  render() {
-    return (
-      <Container>
-        <Title>CONTACT</Title>
-        <ContactContainer>
-          <form action='/api/v1/contact-message' method='post'>
-            <FormColumn>
-              <fieldset>
-                <legend>Name</legend>
-                <input type='text' name='name' />
-              </fieldset>
-              <fieldset>
-                <legend>Surname</legend>
-                <input type='text' name='surname' />
-              </fieldset>
-              <fieldset>
-                <legend>E-mail*</legend>
-                <input type='email' name='email' required />
-              </fieldset>
-            </FormColumn>
+export default function Contact() {
+  return (
+    <Container>
+      <Title>CONTACT</Title>
+      <ContactContainer>
+        <form action='/api/v1/contact-message' method='post'>
+          <FormColumn>
+            <fieldset>
+              <legend>Name</legend>
+              <input type='text' name='name' />
+            </fieldset>
+            <fieldset>
+              <legend>Surname</legend>
+              <input type='text' name='surname' />
+            </fieldset>
+            <fieldset>
+              <legend>E-mail*</legend>
+              <input type='email' name='email' required />
+            </fieldset>
+          </FormColumn>
 
-            <FormColumn>
-              <fieldset>
-                <legend>Message*</legend>
-                <textarea name='message' required></textarea>
-              </fieldset>
-              <SendContainer>
-                <span>* Must fill out</span>
-                <button type='submit'>SEND</button>
-              </SendContainer>
-            </FormColumn>
-          </form>
-          <PdpContainer>
-            <input type='checkbox' name='pdp' id='pdp-checkbox' />
-            <label htmlFor='pdp-checkbox'>Personal Data Protection</label>
-            <span>
-              I agree to use my e-mail address
-              for my personal needs as a recommendation 
-              and offer your services.
-              Logging out the mailng list is possible in 
-              any moment, and checkout instructions 
-              are in every mail.
-            </span>
-          </PdpContainer>
-          <InfoContainer>
-            <p>
-              <strong>BRACh</strong><br />
-              Boat Rent And Charter
-            </p>
-            <p>
-              Address:<br />
-              Splitska Street, 21000 Split, Croatia
-            </p>
-            <p>
-              Telephone:<br />
-              <TelephoneNumber>+385 (0)21 123 456</TelephoneNumber>
-            </p>
-            <p>
-              E-mail:<br />
-              <ContactEmail>info@brach.com</ContactEmail>
-            </p>
-          </InfoContainer>
-        </ContactContainer>
-      </Container>
-    )
-  }
+          <FormColumn>
+            <fieldset>
+              <legend>Message*</legend>
+              <textarea name='message' required></textarea>
+            </fieldset>
+            <SendContainer>
+              <span>* Must fill out</span>
+              <button type='submit'>SEND</button>
+            </SendContainer>
+          </FormColumn>
+        </form>
+        <PdpContainer>
+          <input type='checkbox' name='pdp' id='pdp-checkbox' />
+          <label htmlFor='pdp-checkbox'>Personal Data Protection</label>
+          <span>
+            I agree to use my e-mail address
+            for my personal needs as a recommendation
+            and offer your services.
+            Logging out the mailng list is possible in
+            any moment, and checkout instructions
+            are in every mail.
+          </span>
+        </PdpContainer>
+        <InfoContainer>
+          <p>
+            <strong>BRACh</strong><br />
+            Boat Rent And Charter
+          </p>
+          <p>
+            Address:<br />
+            Splitska Street, 21000 Split, Croatia
+          </p>
+          <p>
+            Telephone:<br />
+            <TelephoneNumber>+385 (0)21 123 456</TelephoneNumber>
+          </p>
+          <p>
+            E-mail:<br />
+            <ContactEmail>info@brach.com</ContactEmail>
+          </p>
+        </InfoContainer>
+      </ContactContainer>
+    </Container>
+  )
 }

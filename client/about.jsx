@@ -2,7 +2,7 @@
 //
 //  about.jsx
 //
-//  © 2020 Zoraja Consulting. All rights reserved but even though use it.
+//  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
 
 import React from 'react'
@@ -86,47 +86,45 @@ const Description = styled.div`
   }
 `
 
-export default class About extends React.Component {
-  render() {
-    return (
-      <Container>
-        <article>
-          <Title>ABOUT <strong>BRACh</strong></Title>
-          <AboutContainer>
-            <ImageCollage>
-              <img src='images/pic1.jpg' />
-              <img src='images/pic2.jpg' />
-              <img src='images/pic3.jpg' />
-            </ImageCollage>
-            <Description>
-              <section>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nulla quis tempor risus. Suspendisse et felis sapien. Sed
-                  fringilla diam sed elementum pharetra. Maecenas magna
-                  urna, dapibus a ante ut, porttitor ultrices erat.
-                </p>
-              </section>
-              <section>
-                <h3>Morbi nec lectus</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis tempor risus.
-                  Suspendisse et felis sapien. Sed fringilla diam sed elementum pharetra. Maecenas magna
-                  urna, dapibus a ante ut, porttitor ultrices erat. Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Nulla quis tempor risus. Suspendisse et felis sapien. Sed fringilla diam sed
-                  elementum pharetra. Maecenas magna urna, dapibus a ante ut, porttitor ultrices
-                  erat.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis tempor risus.
-                  Suspendisse et felis sapien. Sed fringilla diam sed elementum pharetra. Maecenas magna
-                  urna, dapibus a ante ut, porttitor ultrices erat.Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Nulla quis tempor risus. Suspendisse et felis sapien. Sed fringilla diam sed
-                  elementum pharetra. Maecenas magna urna, dapibus a ante ut, porttitor ultrices erat.<br />
-                  <a>Link >></a>
-                </p>
-              </section>
-            </Description>
-          </AboutContainer>
-        </article>
-      </Container>
-    )
-  }
+export default function About() {
+  return (
+    <Container>
+      <article>
+        <Title>ABOUT <strong>BRACh</strong></Title>
+        <AboutContainer>
+          <ImageCollage>
+            <img src='images/pic1.jpg' />
+            <img src='images/pic2.jpg' />
+            <img src='images/pic3.jpg' />
+          </ImageCollage>
+          <Description>
+            <section>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Nulla quis tempor risus. Suspendisse et felis sapien. Sed
+                fringilla diam sed elementum pharetra. Maecenas magna
+                urna, dapibus a ante ut, porttitor ultrices erat.
+              </p>
+            </section>
+            <section>
+              <h3>Morbi nec lectus</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis tempor risus.
+                Suspendisse et felis sapien. Sed fringilla diam sed elementum pharetra. Maecenas magna
+                urna, dapibus a ante ut, porttitor ultrices erat. Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Nulla quis tempor risus. Suspendisse et felis sapien. Sed fringilla diam sed
+                elementum pharetra. Maecenas magna urna, dapibus a ante ut, porttitor ultrices
+                erat.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis tempor risus.
+                Suspendisse et felis sapien. Sed fringilla diam sed elementum pharetra. Maecenas magna
+                urna, dapibus a ante ut, porttitor ultrices erat.Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Nulla quis tempor risus. Suspendisse et felis sapien. Sed fringilla diam sed
+                elementum pharetra. Maecenas magna urna, dapibus a ante ut, porttitor ultrices erat.<br />
+                <a>Link &gt;&gt;</a>
+              </p>
+            </section>
+          </Description>
+        </AboutContainer>
+      </article>
+    </Container>
+  )
 }

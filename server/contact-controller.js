@@ -2,7 +2,7 @@
 //
 //  contact-controller.js
 //
-//  © 2020 Zoraja Consulting. All rights reserved but even though use it.
+//  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
 
 const { parse: parseQuerystring } = require('querystring');
