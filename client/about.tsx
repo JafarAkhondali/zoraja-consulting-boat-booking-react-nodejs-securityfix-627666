@@ -1,6 +1,6 @@
 
 //
-//  about.jsx
+//  about.tsx
 //
 //  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //

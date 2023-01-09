@@ -1,6 +1,6 @@
 
 //
-//  home.jsx
+//  home.tsx
 //
 //  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
@@ -19,7 +19,7 @@ const Container = styled.main`
   padding-bottom: 64px;
 `
 
-const Gallery = styled.div`
+const Gallery = styled.div<{ activeIndex: number }>`
   position: relative;
 
   & img {
@@ -40,7 +40,7 @@ const ImageButtonsContainer = styled.div`
   width: 100%;
 `
 
-const ImageButton = styled.div`
+const ImageButton = styled.div<{ active: boolean }>`
   width: 20px;
   height: 20px;
   opacity: ${props => props.active ? 1 : 0.5};
@@ -73,10 +73,10 @@ const Divider = styled.hr`
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const _imageInterval = useRef(null)
+  const _imageInterval = useRef<ReturnType<typeof setInterval>>()
 
   const selectImage = useCallback(
-    index => {
+    (index: number) => {
       if (activeIndex === index) {
         return
       }
@@ -97,7 +97,7 @@ export default function Home() {
     () => {
       if (_imageInterval.current) {
         clearInterval(_imageInterval.current)
-        _imageInterval.current = null
+        _imageInterval.current = undefined
       }
     },
     [],
@@ -114,7 +114,7 @@ export default function Home() {
     startSlideshow()
   }
 
-  const handleClick = index => {
+  const handleClick = (index: number) => {
     selectImage(index)
     restartSlideshow()
   }

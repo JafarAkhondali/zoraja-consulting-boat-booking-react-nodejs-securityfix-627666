@@ -1,16 +1,16 @@
 
 //
-//  find.jsx
+//  find.tsx
 //
 //  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
 
 import React, { useEffect, useMemo, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { usePrevious } from './hooks'
-import FindForm, { FormButton } from './find-form.jsx'
+import { useAppSelector, usePrevious } from './hooks'
+import FindForm, { FormButton, OfferType } from './find-form'
 import {
   BOATS_SEARCH_BEGIN,
   BOATS_SEARCH_ERROR,
@@ -18,6 +18,7 @@ import {
 } from './actions'
 
 import { mainContentWidth } from './css-variables'
+import { Boat, BoatsState } from './boats-reducer'
 
 const Container = styled.main`
   min-height: calc(100% - 72px - 256px - 32px);
@@ -104,7 +105,11 @@ const InquireButton = styled(FormButton)`
   width: 100%;
 `
 
-const BoatItem = props => {
+interface BoatItemProps {
+  info: Boat
+}
+
+const BoatItem = (props: BoatItemProps) => {
   const { info: { name, type, length, price } } = props
 
   return (
@@ -121,7 +126,11 @@ const BoatItem = props => {
   )
 }
 
-function FindResults(props) {
+interface FindResultsProps {
+  boats: BoatsState
+}
+
+function FindResults(props: FindResultsProps) {
   const { boats: { list: boatList, isRequesting, error } } = props
   const [showSearch, setShowSearch] = useState(false)
   const prevIsRequesting = usePrevious(isRequesting)
@@ -168,9 +177,9 @@ function FindResults(props) {
 
 export default function Find() {
   const dispatch = useDispatch()
-  const boats = useSelector(state => state.boats)
+  const boats = useAppSelector(state => state.boats)
 
-  const getOffer = type => {
+  const getOffer = (type: OfferType) => {
     const xhr = new XMLHttpRequest()
 
     xhr.onreadystatechange = () => {

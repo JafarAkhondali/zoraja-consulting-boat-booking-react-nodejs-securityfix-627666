@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "noEmit": true,
+    "noImplicitOverride": true,
+    "skipLibCheck": true,
+    "strict": true
+  },
+
+  "exclude": ["node_modules", "public", "server", "tests"]
+}

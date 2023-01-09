@@ -1,6 +1,6 @@
 
 //
-//  find-form.jsx
+//  find-form.tsx
 //
 //  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
@@ -119,7 +119,14 @@ const SearchContainer = styled.div`
   }
 `
 
-export default function FindForm(props) {
+export type OfferType = 'best' | 'popular'
+
+export interface FindFormProps {
+  onGetOffer: (offerType: OfferType) => void
+  onSearch: () => void
+}
+
+export default function FindForm(props: FindFormProps) {
   const { onGetOffer, onSearch } = props
 
   const onBestOffersClick = () => {
@@ -215,7 +222,7 @@ export default function FindForm(props) {
 
         <fieldset>
           <legend>Departure/Arrival Date</legend>
-          <TextInput type='text' name='date' defaultValue='06.07 - 13.07.2018.' autocomplete='off' />
+          <TextInput type='text' name='date' defaultValue='06.07 - 13.07.2018.' autoComplete='off' />
         </fieldset>
 
         <fieldset>

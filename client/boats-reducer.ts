@@ -1,32 +1,44 @@
 
 //
-//  reducers.js
+//  boats-reducer.ts
 //
 //  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
 
-import { combineReducers } from 'redux'
+import { AnyAction, combineReducers } from 'redux'
 import {
   BOATS_SEARCH_BEGIN,
   BOATS_SEARCH_ERROR,
-  BOATS_SEARCH
+  BOATS_SEARCH,
+  BoatsActions
 } from './actions'
 
-const initialState = {
-  boats: {
-    list: [],
-    isRequesting: false,
-    error: null
-  }
+export interface Boat {
+  name: string
+  type: string
+  length: number
+  price: number
 }
 
-function boats(state, action) {
+export interface BoatsState {
+  list: Boat[]
+  isRequesting: boolean
+  error?: Error
+}
+
+const initialState: BoatsState = {
+  list: [],
+  isRequesting: false,
+  error: undefined
+}
+
+export default function boats(state = initialState, action: BoatsActions): BoatsState {
   switch (action.type) {
     case BOATS_SEARCH_BEGIN:
       return {
         ...state,
         isRequesting: true,
-        error: null
+        error: undefined
       }
     case BOATS_SEARCH_ERROR:
       return {
@@ -42,11 +54,5 @@ function boats(state, action) {
       }
     default:
       return state
-  }
-}
-
-export default function rootReducer(state = initialState, action) {
-  return {
-    boats: boats(state.boats, action)
   }
 }

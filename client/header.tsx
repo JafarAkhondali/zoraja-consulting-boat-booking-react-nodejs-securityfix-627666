@@ -1,6 +1,6 @@
 
 //
-//  header.jsx
+//  header.tsx
 //
 //  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
@@ -24,7 +24,7 @@ const BrachHeader = styled.header`
   }
 `
 
-const MenuContainer = styled.div`
+const MenuContainer = styled.div<{ open: boolean }>`
   position: relative;
   margin-right: 16px;
 
@@ -84,10 +84,10 @@ export default function Header() {
           <Menu>
   	        <ul>
   	          <li><Link to='/'>Home</Link></li>
-  	          <li><Link to='/about'>About BRACh</Link></li>
-  	          <li><Link to='/find'>Find a boat</Link></li>
-  	          <li><Link to='/media'>Media</Link></li>
-  	          <li><Link to='/contact'>Contact</Link></li>
+  	          <li><Link to='about'>About BRACh</Link></li>
+  	          <li><Link to='find'>Find a boat</Link></li>
+  	          <li><Link to='media'>Media</Link></li>
+  	          <li><Link to='contact'>Contact</Link></li>
   	        </ul>
   	      </Menu>
         ) : null}

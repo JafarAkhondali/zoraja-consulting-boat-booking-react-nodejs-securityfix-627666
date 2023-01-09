@@ -1,6 +1,6 @@
 
 //
-//  css-variables.js
+//  css-variables.ts
 //
 //  © 2022 Zoraja Consulting. All rights reserved but even though use it.
 //
