@@ -2,7 +2,8 @@
 //
 //  constants.js
 //
-//  © 2020 Zoraja Consulting. All rights reserved but even though use it.
+//  © Zoraja Consulting. All rights reserved but even though use it.
+//  vJan23
 //
 
 const path = require('path');

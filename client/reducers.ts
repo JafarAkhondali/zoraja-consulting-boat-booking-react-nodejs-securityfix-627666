@@ -2,7 +2,8 @@
 //
 //  reducers.ts
 //
-//  © 2022 Zoraja Consulting. All rights reserved but even though use it.
+//  © Zoraja Consulting. All rights reserved but even though use it.
+//  vJan23
 //
 
 import { combineReducers } from 'redux';
