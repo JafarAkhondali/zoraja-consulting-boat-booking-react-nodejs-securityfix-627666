@@ -21,3 +21,9 @@ Alternatively, if you want to build an optimized code for production, run:
 ```js
 npm run start:prod
 ```
+
+To open the application in a browser, use URL:
+
+```js
+localhost:8080
+```
