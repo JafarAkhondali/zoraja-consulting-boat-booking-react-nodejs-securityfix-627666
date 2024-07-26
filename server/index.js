@@ -25,6 +25,11 @@ apiRouter
 const server = http.createServer();
 
 server.on('request', (request, response) => {
+    if (path.normalize(decodeURIComponent(request.url)) !== decodeURIComponent(request.url)) {
+        response.statusCode = 403;
+        response.end();
+        return;
+    }
 	if (request.url.startsWith(API_BASE_PATH)) {
 		apiRouter.handleRequest(request, response);
 
